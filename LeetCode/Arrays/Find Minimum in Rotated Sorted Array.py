@@ -14,4 +14,9 @@ class Solution(object):
             else:
                 right = mid
 
-        return nums[left] 
+        return nums[left]
+    
+# You must write an algorithm that runs in O(log n) time.
+# Input: nums = [3,4,5,1,2]
+# Output: 1
+# Explanation: The original array was [1,2,3,4,5] rotated 3 times.
