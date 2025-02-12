@@ -70,6 +70,8 @@ low = 0
 high = len(list) - 1
 
 mergesort(list, low, high)
-mergeSort(list1)
 print(list)
+
+
+mergeSort(list1)
 print(list1)
