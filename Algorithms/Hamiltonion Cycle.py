@@ -5,33 +5,27 @@ def is_safe(v, pos, path, graph, V):
         return False
     return True
 
-def find_cycle(graph, path, pos, V):
+def find_cycles(graph, path, pos, V, total):
     if pos == V:
-        return graph[path[pos - 1]][path[0]] == 1
+        if graph[path[pos - 1]][path[0]] == 1:
+            total.append(path[:] + [path[0]])
+        return
     
     for v in range(1, V):
         if is_safe(v, pos, path, graph, V):
-            path[pos] = v
-            if find_cycle(graph, path, pos + 1, V):
-                return True 
+            path[pos] = V
+            find_cycles(graph, path, pos + 1, V, total)
             path[pos] = -1
-
-    return False
 
 
 def hamiltonion_cycle(graph):
     V = len(graph)
     path = [-1] * V
     path[0] = 0
+    total = []
 
-    if not find_cycle(graph, path, 1, V):
-        print("No Hamiltonian Cycle found")
-        return None
-    else:
-        path.append(path[0])
-        print("Hamiltonion cycle found")
-        print("->".join(map(str, path)))
-        return path
+    find_cycles(graph, path, 1, V, total)
+
 
 graph = [
     [0, 1, 0, 1, 0],
