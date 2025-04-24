@@ -13,7 +13,7 @@ def find_cycles(graph, path, pos, V, total):
     
     for v in range(1, V):
         if is_safe(v, pos, path, graph, V):
-            path[pos] = V
+            path[pos] = v
             find_cycles(graph, path, pos + 1, V, total)
             path[pos] = -1
 
@@ -25,6 +25,15 @@ def hamiltonion_cycle(graph):
     total = []
 
     find_cycles(graph, path, 1, V, total)
+
+    if not total:
+        print("No Hsmiltonion cycles found")
+        return []
+    else:
+        print("All Hamiltonion cycles:")
+        for cycle in total:
+            print(cycle)
+        return total
 
 
 graph = [
