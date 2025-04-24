@@ -1,0 +1,50 @@
+def shortest_path(v, cost, n):
+    INF = float('inf')
+    dist = [0] * n
+    S = [False] * n
+
+    for j in range(n):
+        dist[j] = cost[v][j]
+        S[j] = False
+
+    S[v] = True
+    dist[v] = 0
+
+    for _ in range(n - 1):
+        min_dist = float('inf')
+        u = -1
+
+        for j in range(n):
+            if not S[j] and dist[j] < min_dist:
+                min_dist = dist[j]
+                u = j
+
+        if u == -1:
+            break
+
+        S[u] = True
+
+        for w in range(n):
+            if not S[w] and cost[u][w] != INF:
+                if dist[w] > dist[u] + cost[u][w]:
+                    dist[w] = dist[u] + cost[u][w]
+
+    return dist
+
+
+INF = float('inf')
+n = 5  # Number of vertices
+cost = [
+    [0, 10, INF, 30, 100],
+    [10, 0, 50, INF, INF],
+    [INF, 50, 0, 20, 10],
+    [30, INF, 20, 0, 60],
+    [100, INF, 10, 60, 0]
+]
+source_vertex = 0
+
+result = shortest_path(source_vertex, cost, n)
+
+print(f"\nShortest distances from vertex {source_vertex}:")
+for idx, d in enumerate(result):
+    print(f"To vertex {idx}: {d}")
