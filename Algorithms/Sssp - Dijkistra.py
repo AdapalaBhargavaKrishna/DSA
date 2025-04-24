@@ -31,9 +31,10 @@ def shortest_path(v, cost, n):
 
     return dist
 
-
 INF = float('inf')
-n = 5  # Number of vertices
+
+n = 5
+
 cost = [
     [0, 10, INF, 30, 100],
     [10, 0, 50, INF, INF],
@@ -41,10 +42,16 @@ cost = [
     [30, INF, 20, 0, 60],
     [100, INF, 10, 60, 0]
 ]
+
 source_vertex = 0
-
 result = shortest_path(source_vertex, cost, n)
-
 print(f"\nShortest distances from vertex {source_vertex}:")
 for idx, d in enumerate(result):
     print(f"To vertex {idx}: {d}")
+
+# Shortest distances from vertex 0:
+# To vertex 0: 0
+# To vertex 1: 10
+# To vertex 2: 50
+# To vertex 3: 30
+# To vertex 4: 60
