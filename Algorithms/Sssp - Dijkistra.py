@@ -55,3 +55,10 @@ for idx, d in enumerate(result):
 # To vertex 2: 50
 # To vertex 3: 30
 # To vertex 4: 60
+
+#Shortest distances from vertex 1:
+#To vertex 0: 10
+#To vertex 1: 0
+#To vertex 2: 50
+#To vertex 3: 70
+#To vertex 4: 60
