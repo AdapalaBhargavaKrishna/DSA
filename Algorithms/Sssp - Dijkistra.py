@@ -3,6 +3,7 @@ def shortest_path(v, cost, n):
     dist = [0] * n
     S = [False] * n
     prev = [-1] * n
+    prev[v] = v
 
     for j in range(n):
         dist[j] = cost[v][j]
@@ -34,9 +35,10 @@ def shortest_path(v, cost, n):
     for i in range(n):
         path = []
         x = i
-        while x != -1:
+        while x != -1 and x != prev[x]:
             path.insert(0, x)
             x = prev[x]
+        path.insert(0, v)
         print(f"To {i}: dist = {dist[i]}, path = {' -> '.join(map(str, path))}")
 
 INF = float('inf')
@@ -54,17 +56,8 @@ cost = [
 source_vertex = 0
 shortest_path(source_vertex, cost, n)
 
-
-# Shortest distances from vertex 0:
-# To vertex 0: 0
-# To vertex 1: 10
-# To vertex 2: 50
-# To vertex 3: 30
-# To vertex 4: 60
-
-#Shortest distances from vertex 1:
-#To vertex 0: 10
-#To vertex 1: 0
-#To vertex 2: 50
-#To vertex 3: 70
-#To vertex 4: 60
+# To 0: dist = 0, path = 0
+# To 1: dist = 10, path = 0 -> 1
+# To 2: dist = 50, path = 0 -> 3 -> 2
+# To 3: dist = 30, path = 0 -> 3
+# To 4: dist = 60, path = 0 -> 3 -> 2 -> 4
