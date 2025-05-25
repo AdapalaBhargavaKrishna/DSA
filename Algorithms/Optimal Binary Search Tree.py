@@ -43,4 +43,15 @@ printT(keys, root, 0, n)
 print(f"cost of BST : {cost}")
 
 for k in root:
-    print(k)
+    print([i + 1 for i in k])
+
+# root is 30
+# 10 is child of 30
+# 20 is child of 10
+# 40 is child of 30
+# cost of BST : 26
+# [0, 1, 1, 3, 3]
+# [0, 0, 2, 3, 3]
+# [0, 0, 0, 3, 3]
+# [0, 0, 0, 0, 4]
+# [0, 0, 0, 0, 0]

@@ -1,4 +1,4 @@
-def is_safe(v, pos, path, graph, V):
+def is_safe(v, pos, path, graph):
     if graph[path[pos - 1]][v] == 0:
         return False
     if v in path:
@@ -12,13 +12,12 @@ def find_cycles(graph, path, pos, V, total):
         return
     
     for v in range(1, V):
-        if is_safe(v, pos, path, graph, V):
+        if is_safe(v, pos, path, graph):
             path[pos] = v
             find_cycles(graph, path, pos + 1, V, total)
             path[pos] = -1
 
-
-def hamiltonion_cycle(graph):
+def hamiltonian_cycle(graph):
     V = len(graph)
     path = [-1] * V
     path[0] = 0
@@ -27,14 +26,13 @@ def hamiltonion_cycle(graph):
     find_cycles(graph, path, 1, V, total)
 
     if not total:
-        print("No Hsmiltonion cycles found")
+        print("No Hamiltonian cycles found.")
         return []
     else:
-        print("All Hamiltonion cycles:")
+        print("All Hamiltonian cycles:")
         for cycle in total:
-            print(cycle)
+            print(' -> '.join(str(n+1) for n in cycle))
         return total
-
 
 graph = [
     [0, 1, 0, 1, 0],
@@ -44,4 +42,13 @@ graph = [
     [0, 1, 1, 1, 0]
 ]
 
-hamiltonion_cycle(graph)
+hamiltonian_cycle(graph)
+
+#     A
+#    / \
+#   B———C
+#   |   |
+#   D———E
+# All Hamiltonian cycles:
+# 1 -> 2 -> 3 -> 5 -> 4 -> 1
+# 1 -> 4 -> 5 -> 3 -> 2 -> 1

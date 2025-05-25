@@ -2,6 +2,7 @@ def shortest_path(v, cost, n):
     INF = float('inf')
     dist = [0] * n
     S = [False] * n
+    prev = [-1] * n
 
     for j in range(n):
         dist[j] = cost[v][j]
@@ -28,8 +29,15 @@ def shortest_path(v, cost, n):
             if not S[w] and cost[u][w] != INF:
                 if dist[w] > dist[u] + cost[u][w]:
                     dist[w] = dist[u] + cost[u][w]
+                    prev[w] = u
 
-    return dist
+    for i in range(n):
+        path = []
+        x = i
+        while x != -1:
+            path.insert(0, x)
+            x = prev[x]
+        print(f"To {i}: dist = {dist[i]}, path = {' -> '.join(map(str, path))}")
 
 INF = float('inf')
 
@@ -44,10 +52,8 @@ cost = [
 ]
 
 source_vertex = 0
-result = shortest_path(source_vertex, cost, n)
-print(f"\nShortest distances from vertex {source_vertex}:")
-for idx, d in enumerate(result):
-    print(f"To vertex {idx}: {d}")
+shortest_path(source_vertex, cost, n)
+
 
 # Shortest distances from vertex 0:
 # To vertex 0: 0

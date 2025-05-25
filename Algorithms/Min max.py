@@ -30,3 +30,8 @@ mini, maxi = min_max(arr, 0, len(arr) - 1, min, max)
 print(arr)
 print(f"minimum: {mini}")
 print(f"maximum: {maxi}")
+
+
+# [1, 4, 5, 7, 2]
+# minimum: 1
+# maximum: 7
