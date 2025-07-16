@@ -7,7 +7,7 @@ class Solution(object):
             output += word + " "
 
         return output.strip()
-            
+    
 class Solution(object):
     def reverseWords(self, s):
         return " ".join(s.split()[::-1])
