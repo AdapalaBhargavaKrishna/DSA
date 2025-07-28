@@ -2,7 +2,6 @@ class Solution(object):
     def setZeroes(self, matrix):
         rows = len(matrix)
         cols = len(matrix[0])
-
         zero_rows = set()
         zero_cols = set()
 
