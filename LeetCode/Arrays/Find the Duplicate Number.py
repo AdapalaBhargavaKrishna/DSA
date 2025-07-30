@@ -14,7 +14,7 @@ class Solution(object):
         slow = nums[0]
         while slow != fast:
             slow = nums[slow]
-            dast = nums[fast]
+            fast = nums[fast]
 
         return slow
     
