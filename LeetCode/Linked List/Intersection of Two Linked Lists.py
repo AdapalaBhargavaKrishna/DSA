@@ -10,6 +10,20 @@ class Solution(object):
 
         return x
     
+class Solution(object):
+    def getIntersectionNode(self, headA, headB):
+        nodes_set = set()
+        x = headA
+        while x:
+            nodes_set.add(x)
+            x = x.next
+        x = headB
+        while x:
+            if x in nodes_set:
+                return x
+            x = x.next
+        return None
+    
 # Example 1:
 # Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
 # Output: Intersected at '8'
