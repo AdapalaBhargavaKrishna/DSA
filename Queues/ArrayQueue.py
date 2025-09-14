@@ -1,46 +1,44 @@
 class Queue:
-    def __init__(self, capacity=100):
-        self.capacity = capacity
-        self.queue = [None] * capacity
-        self.front = 0
-        self.rear = 0
-        self.size = 0
+    def __init__(self, c):
+        self.queue = []
+        self.front = self.rear = 0
+        self.capacity = c
 
-    def Enqueue(self, x):
-        if self.size == self.capacity:
-            print("Queue is Full")
-            return None
-        self.queue[self.rear] = x
-        self.rear = (self.rear + 1) % self.capacity
-        self.size += 1
+    def Enqueue(self, data):
+        if self.rear == self.capacity:
+            print("\nQueue is full")
+        else:
+            self.queue.append(data)
+            self.rear += 1
+            print(f"Enqueued {data}")
 
     def Dequeue(self):
-        if self.isEmpty():
-            print("Queue is Empty")
+        if self.front == self.rear:
+            print("Queue is empty")
             return None
-        x = self.queue[self.front]
-        self.front = (self.front + 1) % self.capacity
-        self.size -= 1
+        x = self.queue.pop(0)
+        self.front += 1
+        print(f"Dequeued {x}")
         return x
 
-    def getFront(self):
-        if self.isEmpty():
-            print("Queue is Empty")
-            return None
-        return self.queue[self.front]
+    def queueDisplay(self):
+        if self.front == self.rear:
+            print("\nQueue is Empty")
+            return
+        print("Queue Elements:", end=" ")
+        for i in self.queue:
+            print(i, "<--", end=" ")
+        print()
 
     def isEmpty(self):
-        return self.size == 0
+        return self.front == self.rear
 
-    def queueDisplay(self):
-        if self.isEmpty():
-            print("Queue is Empty")
-        else:
-            print("Queue Elements:", end=" ")
-            for i in range(self.size):
-                print(self.queue[(self.front + i) % self.capacity], end=" <-- ")
-            print()
-
+    def queueFront(self):
+        if self.front == self.rear:
+            print("\nQueue is Empty")
+            return
+        print("\nFront Element is:", self.queue[0])
+        
 q = Queue(4)
 q.queueDisplay()
 
@@ -48,15 +46,13 @@ q.Enqueue(20)
 q.Enqueue(30)
 q.Enqueue(40)
 q.Enqueue(50)
-
 q.queueDisplay()
 
-q.Enqueue(60)
+q.Enqueue(60)  # Queue is full
 
 q.Dequeue()
 q.Dequeue()
 
-print("\nAfter two node deletions:")
+print("\nAfter two node deletions\n")
 q.queueDisplay()
-
-print("Front element:", q.getFront())
+q.queueFront()
