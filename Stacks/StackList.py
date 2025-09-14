@@ -1,32 +1,35 @@
 class Stack:
     def __init__(self):
         self.stack = []
+        self.size = 0
 
-    def push(self, data):
-        self.stack.append(data)
-        print(f"pushed {data} onto the stack")
-    
+    def push(self, x):
+        self.stack.append(x)
+        self.size += 1
+        return None
+
     def pop(self):
-        if not self.isEmpty():
-            popped = self.stack.pop()
-            print(f"popped {popped} onto the stack")
-            return popped
-        else:
-            print("Stack is Empty")
+        if self.isEmpty():
+            print("Stack Underflow! Cannot pop")
             return None
-        
+        self.size -= 1
+        return self.stack.pop()
+
     def peek(self):
-        if not self.isEmpty():
-            return self.stack[-1]
-        else:
+        if self.isEmpty():
             print("Stack is empty")
             return None
+        return self.stack[self.size - 1]
 
     def isEmpty(self):
-        return len(self.stack) == 0
+        return self.size == 0
 
     def display(self):
-        print("Stack:", self.stack)
+        if self.isEmpty():
+            print("Stack is empty")
+        else:
+            print("Stack (bottom → top):", self.stack[:self.size])
+
 
 # Example usage
 stack = Stack()
