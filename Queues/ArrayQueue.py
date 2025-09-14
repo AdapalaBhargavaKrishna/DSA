@@ -13,7 +13,6 @@ class Queue:
         self.queue[self.rear] = x
         self.rear = (self.rear + 1) % self.capacity
         self.size += 1
-        return None
 
     def Dequeue(self):
         if self.isEmpty():
@@ -24,7 +23,7 @@ class Queue:
         self.size -= 1
         return x
 
-    def front(self):
+    def getFront(self):
         if self.isEmpty():
             print("Queue is Empty")
             return None
@@ -33,6 +32,14 @@ class Queue:
     def isEmpty(self):
         return self.size == 0
 
+    def queueDisplay(self):
+        if self.isEmpty():
+            print("Queue is Empty")
+        else:
+            print("Queue Elements:", end=" ")
+            for i in range(self.size):
+                print(self.queue[(self.front + i) % self.capacity], end=" <-- ")
+            print()
 
 q = Queue(4)
 q.queueDisplay()
@@ -46,12 +53,10 @@ q.queueDisplay()
 
 q.Enqueue(60)
 
-q.queueDisplay()
-
 q.Dequeue()
 q.Dequeue()
 
 print("\nAfter two node deletions:")
 q.queueDisplay()
 
-q.front()
+print("Front element:", q.getFront())
