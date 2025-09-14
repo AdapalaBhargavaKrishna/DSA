@@ -1,39 +1,38 @@
 class Queue:
-    def __init__(self, capacity):
+    def __init__(self, capacity=100):
         self.capacity = capacity
-        self.queue = []
+        self.queue = [None] * capacity
         self.front = 0
         self.rear = 0
+        self.size = 0
 
-    def Enqueue(self, data):
-        if self.capacity == self.rear :
+    def Enqueue(self, x):
+        if self.size == self.capacity:
             print("Queue is Full")
-            return
-        self.queue.append(data)
-        self.rear += 1
+            return None
+        self.queue[self.rear] = x
+        self.rear = (self.rear + 1) % self.capacity
+        self.size += 1
+        return None
 
     def Dequeue(self):
-        if self.front == self.rear :
+        if self.isEmpty():
             print("Queue is Empty")
-            return
-        x = self.queue.pop(0)
-        self.rear -= 1
-        print(f"Dequeued {x}")
-    
-    def queueDisplay(self):
-        if self.front == self.rear:
-            print("Queue is Empty")
-        else:
-            print("Queue Elements")
-            for i in self.queue:
-                print(f"{i} <--", end = " ")
-            print()
+            return None
+        x = self.queue[self.front]
+        self.front = (self.front + 1) % self.capacity
+        self.size -= 1
+        return x
 
-    def queueFront(self):
-        if self.front == self.rear:
+    def front(self):
+        if self.isEmpty():
             print("Queue is Empty")
-        else:
-            print(f"Front element is :", self.queue[self.front])
+            return None
+        return self.queue[self.front]
+
+    def isEmpty(self):
+        return self.size == 0
+
 
 q = Queue(4)
 q.queueDisplay()
@@ -55,4 +54,4 @@ q.Dequeue()
 print("\nAfter two node deletions:")
 q.queueDisplay()
 
-q.queueFront()
+q.front()
