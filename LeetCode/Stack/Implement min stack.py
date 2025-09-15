@@ -25,7 +25,7 @@ class MinStack():
     def display(self):
       print("current stack:")
       for i in self.stack:
-        print(i[0],end = " , ")
+        print(i[0],end = "  ")
       print()
 
 
