@@ -42,7 +42,7 @@ class Queue:
         else:
             temp = self.front
             while temp:
-                print(temp.data, end=" -> ")
+                print(temp.data, end=" ")
                 temp = temp.next
             print("None")
     
@@ -54,16 +54,15 @@ class Queue:
             temp = temp.next
         return count
 
-# Example usage
 q1 = Queue()
 q1.enqueue(10)
 q1.enqueue(20)
 q1.enqueue(30)
 
-q1.display()           # 10 -> 20 -> 30 -> None
-print("Size:", q1.size())  # Size: 3
+q1.display()
+print("Size:", q1.size())
 
-q1.dequeue()           # Dequeued 10
-q1.display()           # 20 -> 30 -> None
+q1.dequeue()
+q1.display()
 
-print("Front element:", q1.peek())  # 20
+print("Front element:", q1.peek())
