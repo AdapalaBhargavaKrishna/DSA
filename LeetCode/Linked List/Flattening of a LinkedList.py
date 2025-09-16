@@ -40,7 +40,6 @@ class ListNode:
         self.next = next
         self.child = child
 
-# -------------------- MULTILEVEL LINKED LIST --------------------
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -54,7 +53,6 @@ class LinkedList:
             curr = curr.child
         print(elems)
 
-# -------------------- SOLUTION --------------------
 class Solution:
     def flattenLinkedList(self, head):
         arr = []
@@ -81,7 +79,6 @@ class Solution:
             temp = temp.child
         return head
 
-# -------------------- TEST --------------------
 # Level 1 nodes
 n1 = ListNode(5)
 n2 = ListNode(10)
