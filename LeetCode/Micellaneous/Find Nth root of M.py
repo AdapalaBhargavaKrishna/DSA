@@ -18,4 +18,4 @@ def nthRoot(N, M):
 # Example usage
 print(nthRoot(3, 27))   # Output: 3
 print(nthRoot(4, 69))   # Output: -1
-print(nthRoot(2, 16))   # Output: 4
+print(nthRoot(4, 81))   # Output: 3
