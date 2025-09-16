@@ -6,7 +6,6 @@ class Node:
         self.prev = None
         self.next = None
 
-
 class DoublyLinkedList:
     def __init__(self):
         self.head = Node(0, 0)
@@ -34,7 +33,6 @@ class DoublyLinkedList:
             return node
         return None
 
-
 class LFUCache(object):
 
     def __init__(self, capacity):
@@ -47,9 +45,11 @@ class LFUCache(object):
     def _update_freq(self, node):
         freq = node.freq
         self.freq_map[freq].remove_node(node)
+
         if freq == self.min_freq and self.freq_map[freq].size == 0:
             self.min_freq += 1
         node.freq += 1
+
         if node.freq not in self.freq_map:
             self.freq_map[node.freq] = DoublyLinkedList()
         self.freq_map[node.freq].add_node(node)
@@ -64,11 +64,13 @@ class LFUCache(object):
     def put(self, key, value):
         if self.capacity == 0:
             return
+        
         if key in self.node_map:
             node = self.node_map[key]
             node.value = value
             self._update_freq(node)
             return
+        
         if self.size >= self.capacity:
             lfu_list = self.freq_map[self.min_freq]
             to_remove = lfu_list.remove_last()
@@ -76,6 +78,7 @@ class LFUCache(object):
             self.size -= 1
         new_node = Node(key, value)
         self.node_map[key] = new_node
+
         if 1 not in self.freq_map:
             self.freq_map[1] = DoublyLinkedList()
         self.freq_map[1].add_node(new_node)
