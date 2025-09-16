@@ -1,5 +1,5 @@
 # Given an array of N integers. Every number in the array except one appears twice. Find the single number in the array.
-def singleNumber(self, nums):
+def singleNumber(nums):
         res = 0
         for num in nums:
             res = res ^ num
