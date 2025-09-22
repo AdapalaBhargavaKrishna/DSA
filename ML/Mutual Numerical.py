@@ -1,9 +1,6 @@
 from sklearn.datasets import load_iris
 import pandas as pd
 from sklearn.feature_selection import mutual_info_classif, SelectKBest
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
 
 # 1. Load Iris dataset
 
