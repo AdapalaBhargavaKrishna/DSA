@@ -23,31 +23,27 @@ sns.heatmap(cor, annot=True, cmap=plt.cm.CMRmap_r)
 plt.title("Feature Correlation Heatmap")
 plt.show()
 
-# 4. Function to identify correlated features above a threshold
-def correlation(dataset, threshold):
-   col_corr = set()
-   corr_matrix = dataset.corr()
-   for i in range(len(corr_matrix.columns)):
-        for j in range(i):
-            if abs(corr_matrix.iloc[i, j]) > threshold: 
-                colname = corr_matrix.columns[i]  
-                col_corr.add(colname)
-   return col_corr
-
 # Find features with correlation > 0.8
-corr_features = correlation(X_train, 0.8)
+corr_features = {col for i , col in enumerate(cor.columns)
+                 for j in range(i) if abs(cor.iloc[i,j] > 0.8)}
 
 # 5. Function to return correlation pairs above threshold
 def correlation_pairs(dataset, threshold):
     corr_matrix = dataset.corr()
-    correlated_pairs = []
-    for i in range(len(corr_matrix.columns)):
-        for j in range(i):
-            if abs(corr_matrix.iloc[i, j]) > threshold:
-                col_i = corr_matrix.columns[i]
-                col_j = corr_matrix.columns[j]
-                correlated_pairs.append((col_i, col_j, corr_matrix.iloc[i, j]))
-    return correlated_pairs
+
+    return [
+        (corr_matrix.columns[i], corr_matrix.columns[j], corr_matrix.iloc[i, j])
+        for i in range(len(corr_matrix.columns))
+        for j in range(i)
+        if abs(corr_matrix.iloc[i, j]) > threshold
+    ]
+
+# corr_pairs = [
+#     (X_train.corr().columns[i], X_train.corr().columns[j], X_train.corr().iloc[i, j])
+#         for i in range(len(X_train.corr().columns))
+#         for j in range(i)
+#         if abs(X_train.corr().iloc[i, j]) > 0.8
+# ]
 
 # Find correlated feature pairs with correlation > 0.8
 corr_pairs = correlation_pairs(X_train, 0.8)
