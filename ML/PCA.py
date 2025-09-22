@@ -1,4 +1,3 @@
-# Step 1: Import libraries
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris
@@ -18,7 +17,6 @@ X_scaled = scaler.fit_transform(X)
 
 # Step 4: Apply PCA (reduce to 2 dimensions for visualization)
 pca = PCA(n_components=2)
-#print(pca)
 X_pca = pca.fit_transform(X_scaled)
 
 print("Reduced shape:", X_pca.shape)   # (150 samples, 2 features)
@@ -26,7 +24,6 @@ print(X_pca[:,0])
 
 #print principal components
 print("\nprint principal components(eigenvectors)&weightage of the features\n",pca.components_)
-
 
 # Eigenvalues are proportional to explained variance
 print("\nEigenvalues:", pca.explained_variance_)

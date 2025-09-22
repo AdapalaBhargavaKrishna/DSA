@@ -7,15 +7,13 @@ from sklearn.preprocessing import OneHotEncoder
 data = {
     'Color': ['Red', 'Red', 'Blue', 'Blue', 'Green'],
     'Size': ['S', 'S', 'M', 'L', 'L'],
-    'Shape': ['Circle', 'Circle', 'Circle', 'Circle', 'Circle']  # This column has zero variance
+    'Shape': ['Circle', 'Circle', 'Circle', 'Circle', 'Circle']
 }
 
 df = pd.DataFrame(data)
 print("Original DataFrame:\n", df)
 
 # 2. One-Hot Encode categorical features
-
-# Convert categorical columns into binary columns
 encoder = OneHotEncoder(sparse_output=False, drop=None)
 X_encoded = encoder.fit_transform(df)
 
@@ -27,9 +25,6 @@ df_encoded = pd.DataFrame(X_encoded, columns=encoded_feature_names)
 print("\nOne-Hot Encoded DataFrame:\n", df_encoded)
 
 # 3. Apply Variance Threshold
-
-# VarianceThreshold removes features with low variance
-# Here, threshold=0.0 removes columns with zero variance
 sel = VarianceThreshold(threshold=0.0)
 X_reduced = sel.fit_transform(df_encoded)
 

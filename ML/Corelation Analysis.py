@@ -38,13 +38,6 @@ def correlation_pairs(dataset, threshold):
         if abs(corr_matrix.iloc[i, j]) > threshold
     ]
 
-# corr_pairs = [
-#     (X_train.corr().columns[i], X_train.corr().columns[j], X_train.corr().iloc[i, j])
-#         for i in range(len(X_train.corr().columns))
-#         for j in range(i)
-#         if abs(X_train.corr().iloc[i, j]) > 0.8
-# ]
-
 # Find correlated feature pairs with correlation > 0.8
 corr_pairs = correlation_pairs(X_train, 0.8)
 print(corr_pairs)

@@ -12,6 +12,7 @@ df = pd.read_csv('placement_cgpa.csv')
 plt.scatter(df['cgpa'], df['package'])
 plt.xlabel('CGPA')
 plt.ylabel('Package(in LPA)')
+plt.show()
 
 # 3. Split into features (X) and target (y)
 X = df.iloc[:, 0:1]   # CGPA column
@@ -23,10 +24,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 # 5. Train Linear Regression model
 lr = LinearRegression()
 lr.fit(X_train, y_train)
-
-# Show test values
-print(X_test)
-print(y_test)
 
 # Predict package for the first test sample
 print("cgpa:", X_test.iloc[0].values)
@@ -40,6 +37,7 @@ plt.scatter(df['cgpa'], df['package'])
 plt.plot(X_train, lr.predict(X_train), color='red')
 plt.xlabel('CGPA')
 plt.ylabel('Package(in LPA)')
+plt.show()
 
 # 7. Model parameters
 m = lr.coef_
@@ -66,6 +64,3 @@ print("Package (model prediction) for CGPA=8.58:", lr.predict([[8.58]]))
 
 print("Package (manual calc) for CGPA=9.5:", m * 9.5 + b)
 print("Package (model prediction) for CGPA=9.5:", lr.predict([[9.5]]))
-
-# Show plot
-plt.show()

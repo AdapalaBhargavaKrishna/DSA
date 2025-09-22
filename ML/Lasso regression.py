@@ -9,11 +9,8 @@ from sklearn.model_selection import train_test_split
 # 1. Load diabetes dataset
 X, y = load_diabetes(return_X_y=True)
 
-
 # 2. Train-test split
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 #3. Training on linear Regression
 lin_reg = LinearRegression()
@@ -41,7 +38,6 @@ y_test_pred_lasso = lasso.predict(X_test)
 print("\nLasso Regression:")
 print("Train R²:", r2_score(y_train, y_train_pred_lasso))
 print("Test R²:", r2_score(y_test, y_test_pred_lasso))
-
 
 # 4. Train Lasso model for each alpha and record scores
 for a in alphas:

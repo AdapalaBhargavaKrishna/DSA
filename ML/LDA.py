@@ -1,4 +1,3 @@
-# Dimensionality Reduction using Linear Discriminant Analysis (LDA)
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris
 from sklearn.preprocessing import StandardScaler
@@ -14,7 +13,6 @@ scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
 # 3. Apply LDA
-# Note: n_components <= (number of classes - 1)
 lda = LDA(n_components=2) #no.of linear discriminators(new axes)
 X_lda = lda.fit_transform(X_scaled, y)
 print("\nshape of  LDA:",X_lda.shape)

@@ -3,7 +3,6 @@ import numpy as np
 from sklearn.feature_selection import VarianceThreshold
 
 # 1. Create sample dataset
-
 X = np.array([
     [0, 2, 0, 3],
     [0, 1, 4, 3],
@@ -18,16 +17,11 @@ print("Original DataFrame:")
 print(df)
 
 # 2. Calculate variance of each feature
-
-# This helps us understand which features vary and which are constant
 variances = df.var()
 print("\nVariance of each feature:")
 print(variances)
 
 # 3. Apply Variance Threshold
-
-# VarianceThreshold removes features with variance below the threshold
-# threshold=0 removes features that have zero variance (constant features)
 sel = VarianceThreshold(threshold=0)
 X_new = sel.fit_transform(df)
 

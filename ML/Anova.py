@@ -11,13 +11,10 @@ y = pd.Series(data.target)
 # 2. Optional: Scale the features (recommended for ANOVA)
 scaler = StandardScaler()
 X_scaled = pd.DataFrame(scaler.fit_transform(X), columns=X.columns)
-#This creates a StandardScaler object from sklearn.preprocessing.
-#It does not perform any transformation yet — it just initializes the scaler.
-#fit() computes: the mean and standard deviation of each column in X.
-#transform() then standardizes the data:
+
 
 # 3. Apply ANOVA F-test for feature selection
-k = 2  # Select top-k features
+k = 2
 anova_selector = SelectKBest(score_func=f_classif, k=k)
 X_reduced = anova_selector.fit_transform(X_scaled, y)
 
