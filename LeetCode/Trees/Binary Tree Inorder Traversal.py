@@ -19,3 +19,18 @@ print(inorderTraversal(root))  # Output: [4,2,6,5,7,1,3,9,8]
 
 print(inorderTraversal(None))  # Output: []
 print(inorderTraversal(TreeNode(1)))  # Output: [1]
+
+
+def inorderTraversal(root):
+    stack, result = [], []
+    current = root
+    
+    while stack or current:
+        while current:
+            stack.append(current)
+            current = current.left
+        current = stack.pop()
+        result.append(current.val)
+        current = current.right
+    
+    return result
