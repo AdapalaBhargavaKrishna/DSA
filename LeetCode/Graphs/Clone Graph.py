@@ -22,7 +22,6 @@ def cloneGraph(node):
 
     return dfs(node)
 
-
 # Build graph: 1 -> [2,4], 2 -> [1,3], 3 -> [2,4], 4 -> [1,3]
 n1 = Node(1)
 n2 = Node(2)
