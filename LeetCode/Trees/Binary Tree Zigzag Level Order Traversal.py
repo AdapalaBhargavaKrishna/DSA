@@ -8,8 +8,7 @@ def zigzagLevelOrder(root):
     if not root:
         return []
     
-    q = [root]
-    res = []
+    q , res = [root] , []
     left_to_right = True
 
     while q:
