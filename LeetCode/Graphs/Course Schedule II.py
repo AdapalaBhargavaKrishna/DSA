@@ -20,8 +20,8 @@ def findOrder(numCourses, prerequisites):
         for pre in preMap[crs]:
             if not dfs(pre): return False
         
-        visited.add(crs)
         cycle.remove(crs)
+        visited.add(crs)
         output.append(crs)
         return True
     
