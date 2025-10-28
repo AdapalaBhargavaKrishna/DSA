@@ -8,8 +8,7 @@ def levelOrder(root):
     if not root:
         return []
     
-    q = [root]
-    res = []
+    q , res = [root] , []
 
     while q:
         level = []
