@@ -16,13 +16,7 @@ def lowestCommonAncestor(root, p, q):
     
     return left if left else right
 
-root = TreeNode(3)
-root.left = TreeNode(5)
-root.right = TreeNode(1)
-root.left.left = TreeNode(6)
-root.left.right = TreeNode(2, TreeNode(7), TreeNode(4))
-root.right.left = TreeNode(0)
-root.right.right = TreeNode(8)
+root = TreeNode(3 , TreeNode(5 , TreeNode(6) , TreeNode(2, TreeNode(7), TreeNode(4))), TreeNode(1, TreeNode(0), TreeNode(8)))
 
 p = root.left          # 5
 q = root.right         # 1
@@ -36,4 +30,5 @@ root2 = TreeNode(1)
 root2.left = TreeNode(2)
 p = root2
 q = root2.left
+
 print(lowestCommonAncestor(root2, p, q).val)  # Output: 1
