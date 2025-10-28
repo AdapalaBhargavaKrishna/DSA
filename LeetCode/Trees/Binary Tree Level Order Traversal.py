@@ -10,13 +10,13 @@ def levelOrder(root):
     if not root:
         return []
     
-    q = deque([root])
+    q = [root]
     res = []
 
     while q:
         level = []
         for _ in range(len(q)):
-            node = q.popleft()
+            node = q.pop(0)
             level.append(node.val)
             if node.left:
                 q.append(node.left)
