@@ -8,8 +8,7 @@ def rightSideView(root):
     if not root:
         return []
     
-    q = [root]
-    res = []
+    q , res = [root] , []
 
     while q:
         level_size = len(q)
