@@ -1,28 +1,36 @@
+
 def findOrder(numCourses, prerequisites):
-    adj = [[] for _ in range(numCourses)]
-    indegree = [0] * numCourses
-    for a, b in prerequisites:
-        adj[b].append(a)
-        indegree[a] += 1
+    preMap={i:[] for i in range(numCourses)}
 
-    queue = []
-    for i in range(numCourses):
-        if indegree[i] == 0:
-            queue.append(i)
+    for crs,pre in prerequisites:
+        preMap[crs].append(pre)
+    
+    visited=set()
+    cycle=set()
+    output=[]
 
-    order = []
-    i = 0
-    while i < len(queue):
-        course = queue[i]
-        i += 1
-        order.append(course)
+    def dfs(crs):
+        if crs in cycle:
+            return []
+        
+        if crs in visited:
+            return True
+        
+        cycle.add(crs)
 
-        for nei in adj[course]:
-            indegree[nei] -= 1
-            if indegree[nei] == 0:
-                queue.append(nei)
-
-    return order if len(order) == numCourses else []
+        for pre in preMap[crs]:
+            if not dfs(pre): return False
+        
+        visited.add(crs)
+        cycle.remove(crs)
+        output.append(crs)
+        return True
+    
+    for crs in range(numCourses):
+        if dfs(crs)==False:
+            return []
+    
+    return output
 
 print(findOrder(2, [[1,0]]))            # [0,1]
 print(findOrder(4, [[1,0],[2,0],[3,1],[3,2]])) # [0,1,2,3] or [0,2,1,3]
