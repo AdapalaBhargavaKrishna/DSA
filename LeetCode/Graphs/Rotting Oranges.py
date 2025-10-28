@@ -17,10 +17,13 @@ def orangesRotting(grid):
     head = 0
 
     while head < len(q) and fresh:
+        
         for _ in range(len(q) - head):
             r, c = q[head]; head += 1
+
             for dr, dc in dirs:
                 nr, nc = r + dr, c + dc
+                
                 if 0 <= nr < m and 0 <= nc < n and grid[nr][nc] == 1:
                     grid[nr][nc] = 2
                     fresh -= 1
