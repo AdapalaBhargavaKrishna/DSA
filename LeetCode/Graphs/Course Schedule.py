@@ -1,27 +1,37 @@
 def canFinish(numCourses, prerequisites):
-    adj = [[] for _ in range(numCourses)]
-    indegree = [0] * numCourses
-    for a, b in prerequisites:
-        adj[b].append(a)
-        indegree[a] += 1
+    preMap={i:[] for i in range(numCourses)}
 
-    queue = []
-    for i in range(numCourses):
-        if indegree[i] == 0:
-            queue.append(i)
+    for crs,pre in prerequisites:
+        preMap[crs].append(pre)
+    
+    visited=set()
+    cycle=set()
 
-    completed = 0
-    while queue:
-        course = queue.pop(0)
-        completed += 1
-
-        for nei in adj[course]:
-            indegree[nei] -= 1
-            if indegree[nei] == 0:
-                queue.append(nei)
-
-    return completed == numCourses
-
+    def dfs(crs):
+        if crs in cycle:
+            return False
+        
+        if crs in visited:
+            return True
+        
+        if preMap[crs]==[]:
+            return True
+        
+        cycle.add(crs)
+        
+        for pre in preMap[crs]:
+            if not dfs(pre):return False
+        
+        cycle.remove(crs)
+        visited.add(crs)
+        preMap[crs]=[]
+        return True
+    
+    for crs in range(numCourses):
+        if not dfs(crs):return False
+    
+    return True
+    
 print(canFinish(2, [[1,0]]))            # True
 print(canFinish(2, [[1,0],[0,1]]))      # False
 print(canFinish(4, [[1,0],[2,1],[3,2]])) # True
