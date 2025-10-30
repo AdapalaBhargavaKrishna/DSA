@@ -1,10 +1,10 @@
 # Sliding Window Protocol Simulation using NS2
-
 set ns [new Simulator]
 
 # Output files
 set namf [open sliding_window.nam w]
 $ns namtrace-all $namf
+
 set trf [open sliding_window.tr w]
 $ns trace-all $trf
 
@@ -21,6 +21,7 @@ proc finish {} {
 # Create nodes
 set n0 [$ns node]
 set n1 [$ns node]
+
 $ns duplex-link $n0 $n1 0.2Mb 200ms DropTail
 $ns duplex-link-op $n0 $n1 orient right
 
