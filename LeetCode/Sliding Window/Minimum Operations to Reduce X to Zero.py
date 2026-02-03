@@ -21,3 +21,12 @@ class Solution(object):
                 max_len = max(max_len, right - left + 1)
 
         return len(nums) - max_len
+
+# Example 1:
+# Input: nums = [1,1,4,2,3], x = 5
+# Output: 2
+# Explanation: The optimal solution is to remove the last two elements to reduce x to zero.
+
+# Example 2:
+# Input: nums = [5,6,7,8,9], x = 4
+# Output: -1
