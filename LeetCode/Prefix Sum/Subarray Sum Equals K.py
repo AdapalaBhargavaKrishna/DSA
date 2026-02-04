@@ -28,6 +28,7 @@ class Solution(object):
                 mp[prefix]=1
         return count
 
+
 # Example 1:
 # Input: nums = [1,1,1], k = 2
 # Output: 2
