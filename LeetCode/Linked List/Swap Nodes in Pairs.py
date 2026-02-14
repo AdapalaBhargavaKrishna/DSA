@@ -10,7 +10,7 @@ class Solution(object):
         current = dummy
 
         while current.next and current.next.next:
-            first = currennt.next
+            first = current.next
             second = current.next.next
 
             first.next = second.next
