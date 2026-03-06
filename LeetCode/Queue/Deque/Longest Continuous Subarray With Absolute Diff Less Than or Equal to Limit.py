@@ -18,9 +18,9 @@ class Solution:
             minD.append(right)
 
             while nums[maxD[0]] - nums[minD[0]] > limit:
-                if maxD[0] == left:
+                if maxD[0] < left:
                     maxD.popleft()
-                elif minD[0] == left:
+                elif minD[0] < left:
                     minD.popleft()
                 left += 1
             res = max(res, right - left + 1)
