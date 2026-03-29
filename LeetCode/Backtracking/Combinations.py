@@ -8,8 +8,6 @@ class Solution:
                 return
 
             for i in range(start , n + 1):
-                if i + 1 in current:
-                    continue
                 current.append(i)
                 backtrack(i + 1, current)
                 current.pop()
